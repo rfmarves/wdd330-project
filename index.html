@@ -1,14 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
+    <title>Financial News Center</title>
+    <meta name="Skelet." property="Sēlekkt. Studio" content="https://selekkt.dk/skelet/">
+    <meta name="theme-color" content="#FFFFFF">
+    <meta name="description" content="">
+    <!-- Facebook OG Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="Financial News Center">
+    <meta property="og:title" content="Financial News Center">
+    <meta property="og:description"
+        content="The best place to get news for english-speaking finance professionals in Guatemala.">
+    <meta property="og:image" content="">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Financial News Center">
+    <meta name="twitter:description"
+        content="The best place to get news for english-speaking finance professionals in Guatemala.">
+    <!-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <!-- browse the icons: https://fontawesome.com/search?o=r&m=free -->
+    <link rel="stylesheet" href="css/style.css">
+    </head>
 <body>
-    Hello World
+    <header>
+        <h1>
+            <img src="img/logo.svg" alt="Site logo" width="75"> Financial News Center
+        </h1>
+    </header>
+    <main>
+        <div class="sidebar">
+            <button type="button" class="collapsible-button">
+                <span>Dashboard</span>
+                <span class="collapsing-arrow"></span>
+            </button>
+            <div class="collapsible-container">
+                <div class="card">
+                    <h2>Time</h2>
+                    <ul id="world-time">
+                        <li>Home: 12:00</li>
+                        <li>Paris: 07:00</li>
+                        <li>India: 20:00</li>
+                        <li>New York: 15:00</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h2>FX Rates</h2>
+                    <ul id="fx-rates">
+                        <li>USD/GTQ: 7.75</li>
+                        <li>EUR/GTQ: 9.25</li>
+                        <li>GBP/GTQ: 10.75</li>
+                        <li>USD/EUR: 1.08</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h2>Crypto</h2>
+                    <ul id="crypto-rates">
+                        <li>BTC: $40,000</li>
+                        <li>ETH: $2,500</li>
+                        <li>DOGE: $0.25</li>
+                        <li>ADA: $1.50</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <article>
+            <div class="button-container">
+                <a href="" class="selector-button active">Financial news</a>
+                <a href="" class="selector-button">Tech news</a>
+                <a href="" class="selector-button">Guatemala news</a>
+                <a href="" class="selector-button">USA news</a>
+            </div>
+            <div class="news-container hidden" id="news">
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+                <div class="news-card">
+                    <h3>This is some news</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
+                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
+                        pariatur
+                        consequatur modi dicta cum.</p>
+                </div>
+            </div>
+        </article>
+    </main>
 </body>
-
 </html>
