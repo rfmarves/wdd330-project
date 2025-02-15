@@ -122,14 +122,21 @@ footer a {
 
 .collapsible-container {
     background-color: var(--card-background);
+    padding: 0.5rem;
+        width: 100%;
     /* border: 0.125rem solid var(--card-border); */
     /* border-bottom-left-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem; */
     /* margin-bottom: 1rem; */
-    padding: 0.5rem;
-    width: 100%;
+    /* transition: display 1s; */
 }
 
+.news-container.hidden,
+.collapsible-container.hidden {
+    display: none;
+    /* height: 0; */
+    /* transition: height 1s; */
+}
 .collapsible-button {
     background-color: var(--secondary-color);
     color: var(--secondary-color-text);
@@ -142,11 +149,35 @@ footer a {
     border-top-right-radius: 0.25rem; */
 }
 
-.news-container.hidden,
-.collapsible-container.hidden {
-    display: none;
+.collapsing-symbol {
+    float: right;
+    margin-right: 1rem;
 }
 
+.collapsing-symbol:after {
+    /* content: "━"; */
+    content: "▲";
+    font-weight: 700;
+    /* transition: all 1s ease-in-out; */
+    /* transform-style: preserve-3d; */
+    /* transform-origin: center; */
+}
+
+.collapsing-symbol.collapsed:after {
+    /* content: "✚"; */
+    content: "▼";
+    /* transform: rotateX('-180deg'); */
+}
+
+/* .collapsing-arrow {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    border: solid var(--secondary-color-text);
+    border-width: 0 0 0.125rem 0;
+    background-color: white;
+    /* color: var(--secondary-color-text); 
+}*/
 /* .card {
     background-color: var(--card-background);
     border: 0.125rem solid var(--card-border);

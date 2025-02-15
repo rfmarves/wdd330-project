@@ -29,6 +29,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
     <!-- browse the icons: https://fontawesome.com/search?o=r&m=free -->
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
     </head>
 <body>
     <header>
@@ -40,7 +41,7 @@
         <div class="sidebar">
             <button type="button" class="collapsible-button">
                 <span>Dashboard</span>
-                <span class="collapsing-arrow"></span>
+                <span class="collapsing-symbol"></span>
             </button>
             <div class="collapsible-container">
                 <div class="card">
@@ -74,10 +75,10 @@
         </div>
         <article>
             <div class="button-container">
-                <a href="" class="selector-button active">Financial news</a>
-                <a href="" class="selector-button">Tech news</a>
-                <a href="" class="selector-button">Guatemala news</a>
-                <a href="" class="selector-button">USA news</a>
+                <a class="selector-button" id="financial-news">Financial news</a>
+                <a class="selector-button" id="tech-news">Tech news</a>
+                <a class="selector-button" id="gt-news">Guatemala news</a>
+                <a class="selector-button" id="us-news">USA news</a>
             </div>
             <div class="news-container hidden" id="news">
                 <div class="news-card">
