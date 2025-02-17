@@ -27,17 +27,19 @@ export async function getHeadlineNews(country = "", category = "") {
 }
 
 export default async function getEverythingNews(topic) {
-    try {
-        const url = `${baseUrl}${everything}?q=${topic}&apiKey=${apiKey}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        return data.articles;
-    } catch (error) {
-        console.error(error);
-    }
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  const isoDate = oneWeekAgo.toISOString();
+  console.log(isoDate);
+  try {
+    const url = `${baseUrl}${everything}?q=${topic}&searchIn=title&apiKey=${apiKey}&from=${isoDate}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.articles;
+  } catch (error) {
+    console.error(error);
+  }
 }
-
-
 
 // console.log(await getEverythingNews("united states"));
 // console.log(await getEverythingNews("guatemala"));

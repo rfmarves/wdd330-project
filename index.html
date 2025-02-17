@@ -29,10 +29,10 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
     <!-- browse the icons: https://fontawesome.com/search?o=r&m=free -->
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js" defer></script>
-    <script type="module" src="js/forex.mjs"></script>
-    <script type="module" src="js/crypto.mjs"></script>
-    <script type="module" src="js/news.mjs"></script>
+    <script src="js/main.js" defer type="module"></script>
+    <!-- <script type="module" src="js/forex.mjs"></script> -->
+    <!-- <script type="module" src="js/crypto.mjs"></script> -->
+    <!-- <script type="module" src="js/news.mjs"></script> -->
     </head>
 <body>
     <header>
@@ -47,33 +47,8 @@
                 <span class="collapsing-symbol"></span>
             </button>
             <div class="collapsible-container">
-                <div class="card">
-                    <h2>Time</h2>
-                    <ul id="world-time">
-                        <li>Home: 12:00</li>
-                        <li>Paris: 07:00</li>
-                        <li>India: 20:00</li>
-                        <li>New York: 15:00</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h2>FX Rates</h2>
-                    <ul id="fx-rates">
-                        <li>USD/GTQ: 7.75</li>
-                        <li>EUR/GTQ: 9.25</li>
-                        <li>GBP/GTQ: 10.75</li>
-                        <li>USD/EUR: 1.08</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h2>Crypto</h2>
-                    <ul id="crypto-rates">
-                        <li>BTC: $40,000</li>
-                        <li>ETH: $2,500</li>
-                        <li>DOGE: $0.25</li>
-                        <li>ADA: $1.50</li>
-                    </ul>
-                </div>
+                <div class="card" id="fx-rates"></div>
+                <div class="card" id="crypto-rates"></div>
             </div>
         </div>
         <article>
@@ -83,93 +58,9 @@
                 <a class="selector-button" id="gt-news">Guatemala news</a>
                 <a class="selector-button" id="us-news">USA news</a>
             </div>
-            <div class="news-container hidden" id="news">
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-                <div class="news-card">
-                    <h3>This is some news</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias facilis deserunt
-                        voluptate quaerat itaque aperiam, saepe, reiciendis culpa quae illum quos maiores ea corrupti
-                        pariatur
-                        consequatur modi dicta cum.</p>
-                </div>
-            </div>
+            <div class="news-container hidden" id="news"></div>
         </article>
     </main>
+    <a href="https://www.exchangerate-api.com">Rates By Exchange Rate API</a>
 </body>
 </html>
