@@ -121,6 +121,7 @@ async function getFinancialNews(container) {
 }
 
 function newsContainerTemplate(newsObject) {
+    console.log(newsObject);
     const newsCard = document.createElement("div");
     newsCard.classList.add("news-card");
     const heading = document.createElement("h3");
