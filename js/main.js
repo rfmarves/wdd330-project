@@ -1,36 +1,41 @@
+// module imports
+import getExchangeRates from "./forex.mjs";
+import getCryptoRates from "./crypto.mjs";
+import getEverythingNews from "./news.mjs";
+
 // control elements
-const collapsingButton = document.querySelector('button.collapsible-button');
-const financialNewsButton = document.querySelector('#financial-news');
-const techNewsButton = document.querySelector('#tech-news');
-const gtNewsButton = document.querySelector('#gt-news');
-const usNewsButton = document.querySelector('#us-news');
+const collapsingButton = document.querySelector("button.collapsible-button");
+const financialNewsButton = document.querySelector("#financial-news");
+const techNewsButton = document.querySelector("#tech-news");
+const gtNewsButton = document.querySelector("#gt-news");
+const usNewsButton = document.querySelector("#us-news");
 
 // containers
-const collapsibleContainer = document.querySelector('.collapsible-container');
-const collapsingSymbol = document.querySelector('.collapsing-symbol');
-const newsContainer = document.querySelector('#news');
+const collapsibleContainer = document.querySelector(".collapsible-container");
+const collapsingSymbol = document.querySelector(".collapsing-symbol");
+const newsContainer = document.querySelector("#news");
 // const worldTimeContainer = document.querySelector('#world-time');
-const fxRatesContainer = document.querySelector('#fx-rates');
-const cryptoContainer = document.querySelector('#crypto-rates');
+const fxRatesContainer = document.querySelector("#fx-rates");
+const cryptoContainer = document.querySelector("#crypto-rates");
 
 // event handling functions
 function inactivateButtons() {
-    financialNewsButton.classList.remove("active");
-    techNewsButton.classList.remove("active");
-    gtNewsButton.classList.remove("active");
-    usNewsButton.classList.remove("active");
+  financialNewsButton.classList.remove("active");
+  techNewsButton.classList.remove("active");
+  gtNewsButton.classList.remove("active");
+  usNewsButton.classList.remove("active");
 }
 
 function activateButton(buttonObject) {
-    inactivateButtons();
-    buttonObject.classList.add("active");
-    newsContainer.classList.remove("hidden");
+  inactivateButtons();
+  buttonObject.classList.add("active");
+  newsContainer.classList.remove("hidden");
 }
 
 // event listeners
-collapsingButton.addEventListener('click', () => {
-  collapsingSymbol.classList.toggle('collapsed');
-  collapsibleContainer.classList.toggle('hidden');
+collapsingButton.addEventListener("click", () => {
+  collapsingSymbol.classList.toggle("collapsed");
+  collapsibleContainer.classList.toggle("hidden");
 });
 
 financialNewsButton.addEventListener("click", () => {
@@ -49,11 +54,6 @@ usNewsButton.addEventListener("click", () => {
   activateButton(usNewsButton);
   getUsNews(newsContainer);
 });
-
-// module imports
-import getExchangeRates from "/js/forex.mjs";
-import getCryptoRates from "/js/crypto.mjs";
-import getEverythingNews from "./news.mjs";
 
 // active content
 
@@ -112,45 +112,83 @@ await populateDashboardItem(
 async function getGtNews(container) {
   const news = await getEverythingNews("guatemala");
   console.log(news);
-  populateNewsContainer(news, container)
+  populateNewsContainer(news, container);
 }
 
-async function getUsNews(container) {  
+async function getUsNews(container) {
   const news = await getEverythingNews("united states");
-  populateNewsContainer(news, container)
+  populateNewsContainer(news, container);
 }
 
 async function getTechNews(container) {
   const news = await getEverythingNews("technology");
-  populateNewsContainer(news, container)
+  populateNewsContainer(news, container);
 }
 
 async function getFinancialNews(container) {
   const news = await getEverythingNews("business");
-  populateNewsContainer(news, container)
+  populateNewsContainer(news, container);
 }
 
 function newsContainerTemplate(newsObject) {
-    console.log(newsObject);
-    const newsCard = document.createElement("div");
-    newsCard.classList.add("news-card");
-    const heading = document.createElement("h3");
-    heading.innerHTML = `<a href=${newsObject.url}>${newsObject.title}</a>`;
-    const newsText = document.createElement("p");
-    newsText.textContent = newsObject.description;
-    newsCard.appendChild(heading);
-    newsCard.appendChild(newsText);
-    return newsCard;
+  const newsCard = document.createElement("div");
+  newsCard.classList.add("flip-card-inner");
+  const newsCardFront = document.createElement("div");
+  newsCardFront.classList.add("flip-card-front");
+  const heading = document.createElement("h3");
+  heading.textContent = newsObject.title;
+  newsCardFront.appendChild(heading);
+  const image = document.createElement("img");
+  image.src = newsObject.urlToImage;
+  image.onerror = "this.src='/img/placeholder.webp'";
+  if (newsObject.urlToImage === null) {
+    image.src = "/img/placeholder.webp";
+  }
+  image.alt = newsObject.title;
+  image.classList.add("flip-card-image");
+  newsCardFront.appendChild(image);
+  const newsSource = document.createElement("p");
+  newsSource.textContent = `Source: ${newsObject.source.name}`;
+  newsCardFront.appendChild(newsSource);
+  const newsText = document.createElement("p");
+  newsText.textContent = newsObject.description;
+  newsCardFront.appendChild(newsText);
+  newsCard.appendChild(newsCardFront);
+  const newsCardBack = document.createElement("div");
+  newsCardBack.classList.add("flip-card-back");
+  const author = document.createElement("p");
+  author.textContent = `by ${newsObject.author}`;
+  if (newsObject.author === null) {
+    author.textContent = "by Unknown";
+  }
+  newsCardBack.appendChild(author);
+  const publishedAt = document.createElement("p");
+  publishedAt.textContent = `published at ${newsObject.publishedAt}`;
+  newsCardBack.appendChild(publishedAt);
+  const content = document.createElement("p");
+  content.textContent = newsObject.content;
+  newsCardBack.appendChild(content);
+  const readMore = document.createElement("div");
+  readMore.classList.add("read-more");
+  const readMoreLink = document.createElement("a");
+  readMoreLink.href = newsObject.url;
+  readMoreLink.textContent = "Read More";
+  readMoreLink.target = "_blank";
+  readMore.appendChild(readMoreLink);
+  newsCardBack.appendChild(readMore);
+  newsCard.appendChild(newsCardBack);
+  const flipCardContainer = document.createElement("div");
+  flipCardContainer.classList.add("flip-card");
+  flipCardContainer.appendChild(newsCard);
+  return flipCardContainer;
 }
 
 function populateNewsContainer(newsObject, container) {
-    container.innerHTML = "";
-    newsObject.forEach((newsItem) => {
-        console.log(newsItem);
-        const newsCard = newsContainerTemplate(newsItem);
-        console.log(newsCard);
-        container.appendChild(newsCard);
-    });
+  container.innerHTML = "";
+  newsObject.forEach((newsItem) => {
+    const newsCard = newsContainerTemplate(newsItem);
+    container.appendChild(newsCard);
+  });
 }
 
 // initial load
