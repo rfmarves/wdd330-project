@@ -111,6 +111,15 @@ footer a {
   /********************/
  /* Main body styles */
 /********************/
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
 
 .sidebar {
     margin: 1rem 1rem 0 1rem;
@@ -118,6 +127,7 @@ footer a {
     border-radius: 0.5rem;
     padding: 0;
     overflow: hidden;
+    animation: 1s ease-in 0s 1 slideInFromRight;
 }
 
 .collapsible-container {
@@ -190,11 +200,17 @@ footer a {
     margin: 1rem 0;
     padding: 0.5rem;
 } */
+.card-title {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: bold
+}
 
 .card ul {
     list-style-type: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    /* float: none; */
 }
 
 article {
@@ -215,11 +231,23 @@ article {
     padding-right: 0.5rem;
 }
 
+@keyframes fadeIn {
+    0% {
+        /* transform: translateY(-100%); */
+        opacity: 0;
+    }
+
+    100% {
+        /* transform: translateY(0); */
+        opacity: 1;
+    }
+}
 .news-card {
     background-color: var(--card-background);
     border: 0.125rem solid var(--card-border);
     border-radius: 0.25rem;
     padding: 0.5rem;
+    animation: fadeIn 2s ease-out forwards;
 }
 
 .selector-button {
@@ -312,7 +340,7 @@ article {
         flex-direction: column;
         align-items: center;
         border: none;
-        width: 20rem;
+        width: 25rem;
     }
 
     .card {

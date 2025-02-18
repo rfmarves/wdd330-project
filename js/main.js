@@ -59,15 +59,25 @@ import getEverythingNews from "./news.mjs";
 
 // Exchange Rates and Crypto
 function dashboardTemplate(headingText, base, rates) {
-  const heading = document.createElement("h2");
-  heading.textContent = `${headingText} (per ${base.toUpperCase()})`;
+  const element = document.createElement("div");
+  const heading = document.createElement("div");
+  const title = document.createElement("span");
+  title.classList.add("card-title");
+  title.textContent = `${headingText}`;
+  heading.appendChild(title);
+  const subtitle = document.createElement("span");
+  subtitle.classList.add("card-subtitle");
+  subtitle.textContent = ` (per ${base.toUpperCase()})`;
+  heading.appendChild(subtitle);
+  element.appendChild(heading);
   const list = document.createElement("ul");
   Object.keys(rates).forEach((key) => {
     const listItem = document.createElement("li");
     listItem.textContent = `${key}: ${rates[key]}`;
     list.appendChild(listItem);
   });
-  return [heading, list];
+  element.appendChild(list);
+  return element;
 }
 
 async function populateDashboardItem(
@@ -79,8 +89,8 @@ async function populateDashboardItem(
 ) {
   const rates = await fetchFunction(coins, base);
   const templateData = dashboardTemplate(headingText, base, rates);
-  element.appendChild(templateData[0]);
-  element.appendChild(templateData[1]);
+  element.appendChild(templateData);
+  //   element.appendChild(templateData[1]);
 }
 
 await populateDashboardItem(
