@@ -41,21 +41,38 @@
             <img src="img/logo.svg" alt="Site logo" width="75"> Financial News Center
         </h1>
     </header>
-        <dialog id="dashboard-settings" class="modal">
-        <h2>Dashboard settings</h2>
-        <form id="dashboard-settings-form">
-            <label for="reference" id="referenceLabel">Reference Currency:</label>
-            <select name="reference" id="reference"></select>
-            <label   for="currency1" id="currency1-label">Label 1</label>
-            <select name="currency1" id="currency1"></select>
-            <label   for="currency2" id="currency2-label">Label 2</label>
-            <select name="currency2" id="currency2"></select>
-            <label   for="currency3" id="currency3-label">Label 3</label>
-            <select name="currency3" id="currency3"></select>
-            <label   for="currency4" id="currency4-label">Label 4</label>
-            <select name="currency4" id="currency4"></select>
-            <button type="button" id = "save-settings">Save</button>
-            <button type="button" id= "close-settings">Cancel</button>
+    <dialog id="fx-settings" class="modal">
+        <h2>Exchange Rates settings</h2>
+        <form id="fx-settings-form">
+            <label for="fx-reference">Reference Currency:</label>
+            <select name="fx-reference" id="fx-reference"></select>
+            <label   for="fx1">Currency 1</label>
+            <select name="fx1" id="fx1"></select>
+            <label   for="fx2">Currency 2</label>
+            <select name="fx2" id="fx2"></select>
+            <label   for="fx3">Currency 3</label>
+            <select name="fx3" id="fx3"></select>
+            <label   for="fx4">Currency 4</label>
+            <select name="fx4" id="fx4"></select>
+            <button type="button" id = "fx-save">Save</button>
+            <button type="button" id= "fx-close">Cancel</button>
+        </form>
+    </dialog>
+    <dialog id="crypto-settings" class="modal">
+        <h2>Crypto Rates settings</h2>
+        <form id="crypto-settings-form">
+            <label for="crypto-reference">Reference Currency:</label>
+            <select name="crypto-reference" id="crypto-reference"></select>
+            <label   for="crypto1">Coin 1</label>
+            <select name="crypto1" id="crypto1"></select>
+            <label   for="crypto2">Coin 2</label>
+            <select name="crypto2" id="crypto2"></select>
+            <label   for="crypto3">Coin 3</label>
+            <select name="crypto3" id="crypto3"></select>
+            <label   for="crypto4">Coin 4</label>
+            <select name="crypto4" id="crypto4"></select>
+            <button type="button" id = "crypto-save">Save</button>
+            <button type="button" id= "crypto-close">Cancel</button>
         </form>
     </dialog>
     <main>

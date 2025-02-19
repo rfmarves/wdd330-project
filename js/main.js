@@ -32,7 +32,6 @@ const collapsingSymbol = document.querySelector(".collapsing-symbol");
 const newsContainer = document.querySelector("#news");
 const fxRatesContainer = document.querySelector("#fx-rates");
 const cryptoContainer = document.querySelector("#crypto-rates");
-const settingsContainer = document.querySelector("#dashboard-settings");
 
 // event handling functions
 function inactivateButtons() {
@@ -71,6 +70,8 @@ usNewsButton.addEventListener("click", () => {
   getNews("united states", newsContainer);
 });
 
+// Dashboard settings
+
 async function populateExchangeRates() {
   await populateDashboardItem(
     fxRatesContainer,
@@ -93,17 +94,9 @@ async function populateCryptoRates() {
   );
 }
 // settings elements
-const settingsClose = document.querySelector("#close-settings");
-const settingsSave = document.querySelector("#save-settings");
-const referenceInput = document.querySelector("#reference");
-const currency1Label = document.querySelector("#currency1-label");
-const currency2Label = document.querySelector("#currency2-label");
-const currency3Label = document.querySelector("#currency3-label");
-const currency4Label = document.querySelector("#currency4-label");
-const currency1Input = document.querySelector("#currency1");
-const currency2Input = document.querySelector("#currency2");
-const currency3Input = document.querySelector("#currency3");
-const currency4Input = document.querySelector("#currency4");
+const fxSettingsContainer = document.querySelector("#fx-settings");
+const cryptoSettingsContainer = document.querySelector("#crypto-settings");
+
 
 function changeSettings(type) {
   if (type === "fx") {
@@ -112,66 +105,95 @@ function changeSettings(type) {
   if (type === "crypto") {
     cryptoModal();
   }
-  settingsContainer.showModal();
-  settingsClose.addEventListener("click", () => {
-    settingsContainer.close();
-  } );
-  settingsSave.removeEventListener("click", () => {});
-  if (type === "fx") {
-      settingsSave.addEventListener("click", () => {
-        savePreferences(currencyPreferences, "fnc_fx");
-        populateExchangeRates();
-  })};
-  if (type === "crypto") {
-    settingsSave.addEventListener("click", () => {
-      savePreferences(cryptoPreferences, "fnc_crypto");
-      populateCryptoRates();
-  })};
 }
-
-function savePreferences(preferencesVariable, key) {
-    preferencesVariable.reference = referenceInput.value;
-    preferencesVariable.currencies = [
-      currency1Input.value,
-      currency2Input.value,
-      currency3Input.value,
-      currency4Input.value
-    ];
-  setLocalStorage(key, preferencesVariable);
-  settingsContainer.close();
-};
 
 function fxModal() {
-  currency1Label.textContent = "Currency 1:";
-  currency2Label.textContent = "Currency 2:";
-  currency3Label.textContent = "Currency 3:";
-  currency4Label.textContent = "Currency 4:";
+  const fxClose = document.querySelector("#fx-close");
+  const fxSave = document.querySelector("#fx-save");
+  const fxReferenceInput = document.querySelector("#fx-reference");
+  const fx1Input = document.querySelector("#fx1");
+  const fx2Input = document.querySelector("#fx2");
+  const fx3Input = document.querySelector("#fx3");
+  const fx4Input = document.querySelector("#fx4");
   const  currencyOptions = getCurrencies();
-  setModalOptions(currencyPreferences, currencyOptions, currencyOptions);
+  fxReferenceInput.innerHTML = "";
+  fx1Input.innerHTML = "";
+  fx2Input.innerHTML = "";
+  fx3Input.innerHTML = "";
+  fx4Input.innerHTML = "";
+  addOptions(fxReferenceInput, currencyOptions);
+  selectAnOption(fxReferenceInput, currencyPreferences.reference);
+  addOptions(fx1Input, currencyOptions);
+  selectAnOption(fx1Input, currencyPreferences.currencies[0]);
+  addOptions(fx2Input, currencyOptions);
+  selectAnOption(fx2Input, currencyPreferences.currencies[1]);
+  addOptions(fx3Input, currencyOptions);
+  selectAnOption(fx3Input, currencyPreferences.currencies[2]);
+  addOptions(fx4Input, currencyOptions);
+  selectAnOption(fx4Input, currencyPreferences.currencies[3]);
+  fxSave.addEventListener("click", () => {
+    currencyPreferences.reference = fxReferenceInput.value;
+    currencyPreferences.currencies = [
+      fx1Input.value,
+      fx2Input.value,
+      fx3Input.value,
+      fx4Input.value
+    ];
+    setLocalStorage("fnc_fx", currencyPreferences);
+    fxSettingsContainer.close();
+    populateExchangeRates();
+  });
+  fxClose.addEventListener("click", () => {
+    fxSettingsContainer.close();
+  });
+  fxSettingsContainer.showModal();
 }
+
+
 
 function cryptoModal() {
-  currency1Label.textContent = "Coin 1:";
-  currency2Label.textContent = "Coin 2:";
-  currency3Label.textContent = "Coin 3:";
-  currency4Label.textContent = "Coin 4:";
   const referenceCurrencies = getReferenceCurrencies();
   const currencyOptions = getCryptoCurrencies();
-  setModalOptions(cryptoPreferences, referenceCurrencies, currencyOptions);
+  const cryptoClose = document.querySelector("#crypto-close");
+  const cryptoSave = document.querySelector("#crypto-save");
+  const cryptoReferenceInput = document.querySelector("#crypto-reference");
+  const crypto1Input = document.querySelector("#crypto1");
+  const crypto2Input = document.querySelector("#crypto2");
+  const crypto3Input = document.querySelector("#crypto3");
+  const crypto4Input = document.querySelector("#crypto4");
+  cryptoReferenceInput.innerHTML = "";
+  crypto1Input.innerHTML = "";
+  crypto2Input.innerHTML = "";
+  crypto3Input.innerHTML = "";
+  crypto4Input.innerHTML = "";
+  addOptions(cryptoReferenceInput, referenceCurrencies);
+  selectAnOption(cryptoReferenceInput, cryptoPreferences.reference);
+  addOptions(crypto1Input, currencyOptions);
+  selectAnOption(crypto1Input, cryptoPreferences.currencies[0]);
+  addOptions(crypto2Input, currencyOptions);
+  selectAnOption(crypto2Input, cryptoPreferences.currencies[1]);
+  addOptions(crypto3Input, currencyOptions);
+  selectAnOption(crypto3Input, cryptoPreferences.currencies[2]);
+  addOptions(crypto4Input, currencyOptions);
+  selectAnOption(crypto4Input, cryptoPreferences.currencies[3]);
+  cryptoSave.addEventListener("click", () => {
+    cryptoPreferences.reference = cryptoReferenceInput.value;
+    cryptoPreferences.currencies = [
+      crypto1Input.value,
+      crypto2Input.value,
+      crypto3Input.value,
+      crypto4Input.value
+    ];
+    setLocalStorage("fnc_crypto", cryptoPreferences);
+    cryptoSettingsContainer.close();
+    populateCryptoRates();
+  });
+  cryptoClose.addEventListener("click", () => {
+    cryptoSettingsContainer.close();
+  });  
+  cryptoSettingsContainer.showModal();
 }
 
-function setModalOptions(preferenceVariable, referenceCurrencies, currencyOptions) {
-  addOptions(referenceInput, referenceCurrencies);
-  selectAnOption(referenceInput, preferenceVariable.reference);
-  addOptions(currency1Input, currencyOptions);
-  selectAnOption(currency1Input, preferenceVariable.currencies[0]);
-  addOptions(currency2Input, currencyOptions);
-  selectAnOption(currency2Input, preferenceVariable.currencies[1]);
-  addOptions(currency3Input, currencyOptions);
-  selectAnOption(currency3Input, preferenceVariable.currencies[2]);
-  addOptions(currency4Input, currencyOptions);
-  selectAnOption(currency4Input, preferenceVariable.currencies[3]);
-}
 
 function addOptions(selectElement, optionsArray) {
   selectElement.innerHTML = "";
