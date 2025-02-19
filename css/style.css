@@ -339,6 +339,12 @@ article {
     gap: 1rem;
 }
 
+.credits {
+    color: var(--accent1-color-text);
+    text-decoration: none;
+    font-size: small;
+}
+
   /**********************/
  /* 640px media query  */
 /**********************/
