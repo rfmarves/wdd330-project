@@ -1,7 +1,9 @@
 // module imports
 import getExchangeRates from "./forex.mjs";
 import getCryptoRates from "./crypto.mjs";
-import getEverythingNews from "./news.mjs";
+import getNews from "./news.mjs";
+import populateDashboardItem from "./dashboard.mjs";
+import { getLocalStorage, setLocalStorage } from "./localstorage.mjs";
 
 // control elements
 const collapsingButton = document.querySelector("button.collapsible-button");
@@ -40,59 +42,22 @@ collapsingButton.addEventListener("click", () => {
 
 financialNewsButton.addEventListener("click", () => {
   activateButton(financialNewsButton);
-  getFinancialNews(newsContainer);
+  getNews("business", newsContainer);
 });
 techNewsButton.addEventListener("click", () => {
   activateButton(techNewsButton);
-  getTechNews(newsContainer);
+  getNews("technology", newsContainer);
 });
 gtNewsButton.addEventListener("click", () => {
   activateButton(gtNewsButton);
-  getGtNews(newsContainer);
+  getNews("guatemala", newsContainer);
 });
 usNewsButton.addEventListener("click", () => {
   activateButton(usNewsButton);
-  getUsNews(newsContainer);
+  getNews("united states", newsContainer);
 });
 
-// active content
-
-// Exchange Rates and Crypto
-function dashboardTemplate(headingText, base, rates) {
-  const element = document.createElement("div");
-  const heading = document.createElement("div");
-  const title = document.createElement("span");
-  title.classList.add("card-title");
-  title.textContent = `${headingText}`;
-  heading.appendChild(title);
-  const subtitle = document.createElement("span");
-  subtitle.classList.add("card-subtitle");
-  subtitle.textContent = ` (per ${base.toUpperCase()})`;
-  heading.appendChild(subtitle);
-  element.appendChild(heading);
-  const list = document.createElement("ul");
-  Object.keys(rates).forEach((key) => {
-    const listItem = document.createElement("li");
-    listItem.textContent = `${key}: ${rates[key]}`;
-    list.appendChild(listItem);
-  });
-  element.appendChild(list);
-  return element;
-}
-
-async function populateDashboardItem(
-  element,
-  headingText,
-  coins,
-  base,
-  fetchFunction
-) {
-  const rates = await fetchFunction(coins, base);
-  const templateData = dashboardTemplate(headingText, base, rates);
-  element.appendChild(templateData);
-  //   element.appendChild(templateData[1]);
-}
-
+// active content load
 await populateDashboardItem(
   fxRatesContainer,
   "Exchange Rates",
@@ -100,6 +65,7 @@ await populateDashboardItem(
   "USD",
   getExchangeRates
 );
+
 await populateDashboardItem(
   cryptoContainer,
   "Crypto Rates",
@@ -107,89 +73,3 @@ await populateDashboardItem(
   "usd",
   getCryptoRates
 );
-
-// news
-async function getGtNews(container) {
-  const news = await getEverythingNews("guatemala");
-  console.log(news);
-  populateNewsContainer(news, container);
-}
-
-async function getUsNews(container) {
-  const news = await getEverythingNews("united states");
-  populateNewsContainer(news, container);
-}
-
-async function getTechNews(container) {
-  const news = await getEverythingNews("technology");
-  populateNewsContainer(news, container);
-}
-
-async function getFinancialNews(container) {
-  const news = await getEverythingNews("business");
-  populateNewsContainer(news, container);
-}
-
-function newsContainerTemplate(newsObject) {
-  const newsCard = document.createElement("div");
-  newsCard.classList.add("flip-card-inner");
-  const newsCardFront = document.createElement("div");
-  newsCardFront.classList.add("flip-card-front");
-  const heading = document.createElement("h3");
-  heading.textContent = newsObject.title;
-  newsCardFront.appendChild(heading);
-  const image = document.createElement("img");
-  image.src = newsObject.urlToImage;
-  image.onerror = "this.src='/img/placeholder.webp'";
-  if (newsObject.urlToImage === null) {
-    image.src = "/img/placeholder.webp";
-  }
-  image.alt = newsObject.title;
-  image.classList.add("flip-card-image");
-  newsCardFront.appendChild(image);
-  const newsSource = document.createElement("p");
-  newsSource.textContent = `Source: ${newsObject.source.name}`;
-  newsCardFront.appendChild(newsSource);
-  const newsText = document.createElement("p");
-  newsText.textContent = newsObject.description;
-  newsCardFront.appendChild(newsText);
-  newsCard.appendChild(newsCardFront);
-  const newsCardBack = document.createElement("div");
-  newsCardBack.classList.add("flip-card-back");
-  const author = document.createElement("p");
-  author.textContent = `by ${newsObject.author}`;
-  if (newsObject.author === null) {
-    author.textContent = "by Unknown";
-  }
-  newsCardBack.appendChild(author);
-  const publishedAt = document.createElement("p");
-  publishedAt.textContent = `published at ${newsObject.publishedAt}`;
-  newsCardBack.appendChild(publishedAt);
-  const content = document.createElement("p");
-  content.textContent = newsObject.content;
-  newsCardBack.appendChild(content);
-  const readMore = document.createElement("div");
-  readMore.classList.add("read-more");
-  const readMoreLink = document.createElement("a");
-  readMoreLink.href = newsObject.url;
-  readMoreLink.textContent = "Read More";
-  readMoreLink.target = "_blank";
-  readMore.appendChild(readMoreLink);
-  newsCardBack.appendChild(readMore);
-  newsCard.appendChild(newsCardBack);
-  const flipCardContainer = document.createElement("div");
-  flipCardContainer.classList.add("flip-card");
-  flipCardContainer.appendChild(newsCard);
-  return flipCardContainer;
-}
-
-function populateNewsContainer(newsObject, container) {
-  container.innerHTML = "";
-  newsObject.forEach((newsItem) => {
-    const newsCard = newsContainerTemplate(newsItem);
-    container.appendChild(newsCard);
-  });
-}
-
-// initial load
-// getGtNews(newsContainer);

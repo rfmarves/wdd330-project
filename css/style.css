@@ -180,11 +180,21 @@ footer a {
     font-weight: bold
 }
 
+.card .gear {
+    float: right;
+    color: var(--card-border);
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.card .gear:hover {
+    color: var(--primary-color-text);
+}
+
 .card ul {
     list-style-type: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* float: none; */
 }
 
 article {
