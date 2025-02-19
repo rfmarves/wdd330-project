@@ -149,8 +149,6 @@ function fxModal() {
   fxSettingsContainer.showModal();
 }
 
-
-
 function cryptoModal() {
   const referenceCurrencies = getReferenceCurrencies();
   const currencyOptions = getCryptoCurrencies();

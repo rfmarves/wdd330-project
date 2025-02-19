@@ -78,7 +78,7 @@ ol {
 
 main {
     padding: 0 0.5rem;
-    max-width: 84rem;
+    max-width: 90rem;
     margin: 0 auto;
 }
 
@@ -199,6 +199,7 @@ footer a {
 
 article {
     margin: 1rem 0;
+    width: 100%;
 }
 
 .button-container {

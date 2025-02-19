@@ -47,3 +47,5 @@ function dashboardTemplate(type, base, rates, settingsFunction) {
   element.appendChild(list);
   return element;
 }
+
+// Dashboard settings section
