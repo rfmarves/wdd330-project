@@ -195,20 +195,20 @@ export default async function getExchangeRates(
   }
 }
 
-export async function getCurrencies() {
-  try {
-    const url = `${baseUrl}list?access_key=${apiKey}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    return Object.keys(data.currencies);
-  } catch (error) {
-    console.error(error);
-    return Object.keys(fallbackCurrencies.currencies);
-  }
-}
+// export async function getCurrencies() {
+//   try {
+//     const url = `${baseUrl}list`;
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     console.log(data);
+//     return Object.keys(data.currencies);
+//   } catch (error) {
+//     console.error(error);
+//     return Object.keys(fallbackCurrencies.currencies);
+//   }
+// }
 
-export function getFallbackCurrencies() {
+export function getCurrencies() {
   return Object.keys(fallbackCurrencies.currencies);
 }
 

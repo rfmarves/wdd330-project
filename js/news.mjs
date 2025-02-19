@@ -36,6 +36,7 @@ export async function getEverythingNews(topic) {
 
 // https://newsapi.org/v2/top-headlines?country=de&category=business&apiKey=9b653ff59e014f179afed4e8855753d3
 export async function getHeadlineNews(country = "", category = "") {
+  // Used for getting headline news. Currently not used.
     let userCountry = "";
     let userCategory = "";
     if(country != "") {
@@ -58,8 +59,12 @@ export async function getHeadlineNews(country = "", category = "") {
 }
 
 function newsContainerTemplate(newsObject) {
+  // generates a news card. The card has a front and a back,
+  // and it's contained within an overall container and a flip container.
+  // inside the flip container, there is a front and a back container.
   const newsCard = document.createElement("div");
   newsCard.classList.add("flip-card-inner");
+  // Start of front container
   const newsCardFront = document.createElement("div");
   newsCardFront.classList.add("flip-card-front");
   const heading = document.createElement("h3");
@@ -81,6 +86,7 @@ function newsContainerTemplate(newsObject) {
   newsText.textContent = newsObject.description;
   newsCardFront.appendChild(newsText);
   newsCard.appendChild(newsCardFront);
+  //Start of back container
   const newsCardBack = document.createElement("div");
   newsCardBack.classList.add("flip-card-back");
   const author = document.createElement("p");
@@ -104,14 +110,9 @@ function newsContainerTemplate(newsObject) {
   readMore.appendChild(readMoreLink);
   newsCardBack.appendChild(readMore);
   newsCard.appendChild(newsCardBack);
+  // End of back container
   const flipCardContainer = document.createElement("div");
   flipCardContainer.classList.add("flip-card");
   flipCardContainer.appendChild(newsCard);
   return flipCardContainer;
 }
-
-
-// console.log(await getEverythingNews("united states"));
-// console.log(await getEverythingNews("guatemala"));
-// console.log(await getEverythingNews("business"));
-// console.log(await getEverythingNews("technology"));

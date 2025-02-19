@@ -1,22 +1,27 @@
-// module imports
-import getExchangeRates from "./forex.mjs";
-import getCryptoRates from "./crypto.mjs";
-
-// maing export function
+// main export function
 export default async function populateDashboardItem(
   element,
-  headingText,
+  type,
   coins,
   base,
-  fetchFunction
+  fetchFunction,
+  settingsFunction
 ) {
   const rates = await fetchFunction(coins, base);
-  const templateData = dashboardTemplate(headingText, base, rates);
+  const templateData = dashboardTemplate(type, base, rates,settingsFunction);
+  element.innerHTML = "";
   element.appendChild(templateData);
 }
 
 // Exchange Rates and Crypto Rates template
-function dashboardTemplate(headingText, base, rates) {
+function dashboardTemplate(type, base, rates, settingsFunction) {
+  let headingText = type;
+  if (type === "fx") {
+    headingText = "Exchange Rates";
+  }
+  if (type === "crypto") {
+    headingText = "Crypto Rates";
+  }
   const element = document.createElement("div");
   const heading = document.createElement("div");
   const title = document.createElement("span");
@@ -30,6 +35,7 @@ function dashboardTemplate(headingText, base, rates) {
   const gear = document.createElement("div");
   gear.classList.add("gear");
   gear.innerHTML = '<i class="fa-solid fa-gear"></i>';
+  gear.addEventListener("click", () => {settingsFunction(`${type}`)});
   heading.appendChild(gear);
   element.appendChild(heading);
   const list = document.createElement("ul");

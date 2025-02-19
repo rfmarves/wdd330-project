@@ -41,8 +41,24 @@
             <img src="img/logo.svg" alt="Site logo" width="75"> Financial News Center
         </h1>
     </header>
+        <dialog id="dashboard-settings" class="modal">
+        <h2>Dashboard settings</h2>
+        <form id="dashboard-settings-form">
+            <label for="reference" id="referenceLabel">Reference Currency:</label>
+            <select name="reference" id="reference"></select>
+            <label   for="currency1" id="currency1-label">Label 1</label>
+            <select name="currency1" id="currency1"></select>
+            <label   for="currency2" id="currency2-label">Label 2</label>
+            <select name="currency2" id="currency2"></select>
+            <label   for="currency3" id="currency3-label">Label 3</label>
+            <select name="currency3" id="currency3"></select>
+            <label   for="currency4" id="currency4-label">Label 4</label>
+            <select name="currency4" id="currency4"></select>
+            <button type="button" id = "save-settings">Save</button>
+            <button type="button" id= "close-settings">Cancel</button>
+        </form>
+    </dialog>
     <main>
-        <dialog id="dashboard-settings" class="modal"></dialog>
         <div class="sidebar">
             <button type="button" class="collapsible-button">
                 <span>Dashboard</span>
