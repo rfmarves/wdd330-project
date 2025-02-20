@@ -92,9 +92,9 @@ function newsContainerTemplate(newsObject) {
   const newsCardBack = document.createElement("div");
   newsCardBack.classList.add("flip-card-back");
   const author = document.createElement("p");
-  author.textContent = `by ${newsObject.source.url}`;
+  author.textContent = `Site URL: ${newsObject.source.url}`;
   if (newsObject.author === null) {
-    author.textContent = "by Unknown";
+    author.textContent = "Unknown URL";
   }
   newsCardBack.appendChild(author);
   const publishedAt = document.createElement("p");
