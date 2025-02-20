@@ -1,8 +1,6 @@
-const apiKey = "9b653ff59e014f179afed4e8855753d3";
-const baseUrl = "https://newsapi.org/v2/";
-const topHeadlines = "top-headlines";
-const everything = "everything";
-
+const apiKey = "4d3633d30babef17806de08f80738493";
+const baseUrl ="https://gnews.io/api/v4/";
+const everything = "";
 
 export default async function getNews(topic, container) {
   const news = await getEverythingNews(topic);
@@ -18,15 +16,19 @@ function populateNewsContainer(newsObject, container) {
   });
 }
 
+// https://api.apitube.io/v1/news/everything?q=(title:guatemala)&api_key=api_live_9KFb6kNEOJpE9hs3giUTVUrDC0olQDQKKGnRlxNvxKJuzZXzPAKjOLyHti6o
 export async function getEverythingNews(topic) {
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
   const isoDate = oneWeekAgo.toISOString();
   console.log(isoDate);
   try {
-    const url = `${baseUrl}${everything}?q=${topic}&searchIn=title&apiKey=${apiKey}&from=${isoDate}`;
+    const url = `${baseUrl}${everything}search?q=${topic}&lang=en&max=10&apikey=${apiKey}`;
+    console.log(url);
     const response = await fetch(url);
+    console.log(response);
     const data = await response.json();
+    console.log(data.articles);
     return data.articles;
   } catch (error) {
     console.error(error);
@@ -71,7 +73,7 @@ function newsContainerTemplate(newsObject) {
   heading.textContent = newsObject.title;
   newsCardFront.appendChild(heading);
   const image = document.createElement("img");
-  image.src = newsObject.urlToImage;
+  image.src = newsObject.image;
   image.onerror = "this.src='/img/placeholder.webp'";
   if (newsObject.urlToImage === null) {
     image.src = "/img/placeholder.webp";
@@ -90,7 +92,7 @@ function newsContainerTemplate(newsObject) {
   const newsCardBack = document.createElement("div");
   newsCardBack.classList.add("flip-card-back");
   const author = document.createElement("p");
-  author.textContent = `by ${newsObject.author}`;
+  author.textContent = `by ${newsObject.source.url}`;
   if (newsObject.author === null) {
     author.textContent = "by Unknown";
   }
